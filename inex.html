@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy 1 Month, Tharaphu 💖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#1a0b2e;--bg2:#3a0f4f;--pink:#ff4d8d;--rose:#ff8fb8;--gold:#ffd98a;--text:#fff1f7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Poppins',system-ui,sans-serif;color:var(--text);background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%,#6b1747);background-attachment:fixed;min-height:100vh;overflow-x:hidden}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.7;animation:tw 3s infinite ease-in-out}
+@keyframes tw{50%{opacity:.1;transform:scale(.5)}}
+section{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center}
+.script{font-family:'Dancing Script',cursive}
+h1{font-size:clamp(2.6rem,11vw,5.5rem);line-height:1.1;background:linear-gradient(90deg,var(--rose),var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;animation:glow 3s infinite alternate}
+@keyframes glow{from{filter:drop-shadow(0 0 6px #ff4d8d88)}to{filter:drop-shadow(0 0 22px #ff4d8dcc)}}
+.sub{margin-top:14px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem;opacity:.85}
+.heart{font-size:5rem;animation:beat 1.2s infinite;cursor:pointer;margin-bottom:10px;filter:drop-shadow(0 0 20px var(--pink));user-select:none}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+.hint{margin-top:30px;font-size:.8rem;opacity:.6;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+.timer{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.timer div{background:#ffffff14;border:1px solid #ffffff26;backdrop-filter:blur(8px);border-radius:16px;padding:14px 12px;min-width:68px}
+.timer b{display:block;font-size:1.7rem;color:var(--gold)}
+.timer span{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+h2{font-size:clamp(2rem,8vw,3.2rem);color:var(--rose);margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;width:100%;max-width:760px}
+.card{perspective:800px;height:150px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;border-radius:18px;display:flex;align-items:center;justify-content:center;padding:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;font-size:.9rem}
+.card .f{background:linear-gradient(135deg,#ff4d8d,#b3367a);font-size:2rem;box-shadow:0 8px 24px #ff4d8d44}
+.card .b{background:#ffffff1c;border:1px solid #ffffff33;transform:rotateY(180deg);backdrop-filter:blur(8px)}
+.env{width:min(320px,86vw);cursor:pointer;position:relative}
+.env .lid{font-size:4.5rem;transition:transform .5s}
+.letter{max-height:0;overflow:hidden;opacity:0;transition:all .9s ease;background:#fff1f7;color:#4a1235;border-radius:18px;padding:0 22px;margin-top:10px;text-align:left;max-width:460px;line-height:1.7}
+.letter.open{max-height:700px;opacity:1;padding:26px 22px;box-shadow:0 10px 40px #ff4d8d55}
+.letter .script{font-size:1.9rem;color:#c2185b}
+.btn{margin-top:28px;border:0;border-radius:999px;padding:16px 34px;font:600 1.05rem 'Poppins';color:#fff;background:linear-gradient(90deg,#ff4d8d,#ff8a5c);cursor:pointer;box-shadow:0 8px 28px #ff4d8d77;transition:transform .2s}
+.btn:active{transform:scale(.94)}
+.fin{font-size:clamp(2rem,9vw,3.6rem);color:var(--gold)}
+.reveal{opacity:0;transform:translateY(40px);transition:all 1s}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<canvas id="fx"></canvas>
+
+<section>
+  <div class="heart" id="bigheart">💖</div>
+  <p class="sub">Happy one month</p>
+  <h1 class="script">Tharaphu</h1>
+  <p class="sub" style="margin-top:18px">20 · 11 · 2026 &nbsp;·&nbsp; our first month</p>
+  <div class="timer" id="timer"></div>
+  <p class="hint">tap the heart · then scroll ↓</p>
+</section>
+
+<section class="reveal">
+  <h2 class="script">Little reasons I love you</h2>
+  <div class="cards" id="cards"></div>
+  <p class="hint" style="animation:none">tap a card</p>
+</section>
+
+<section class="reveal">
+  <h2 class="script">A letter for you</h2>
+  <div class="env" id="env">
+    <div class="lid" id="lid">💌</div>
+    <p class="sub">tap to open</p>
+  </div>
+  <div class="letter" id="letter">
+    <p class="script">My love,</p>
+    <p>One month ago my life got softer, warmer and a lot more fun. Every day with you feels like my favorite day, and I’m so grateful I get to be yours.</p>
+    <p style="margin-top:10px">Thank you for your smile, your patience, and for being exactly you. This is only the first month, and I already can’t wait for all the ones that come after.</p>
+    <p style="margin-top:14px" class="script">Forever yours, Ahmed 💕</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <p class="fin script">I love you, Tharaphu</p>
+  <p class="sub" style="margin-top:12px">to the moon and back, and then some more</p>
+  <button class="btn" id="boom">Press for a surprise ✨</button>
+</section>
+
+<script>
+(function(){
+  // stars
+  var st=document.getElementById('stars');
+  for(var i=0;i<60;i++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';st.appendChild(s);}
+
+  // timer since Nov 20 2026
+  var start=new Date(2026,10,20,0,0,0);
+  var t=document.getElementById('timer');
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var d=Math.max(0,Date.now()-start.getTime())/1000;
+    var days=Math.floor(d/86400),h=Math.floor(d%86400/3600),m=Math.floor(d%3600/60),sec=Math.floor(d%60);
+    t.innerHTML='<div><b>'+days+'</b><span>days</span></div><div><b>'+pad(h)+'</b><span>hours</span></div><div><b>'+pad(m)+'</b><span>min</span></div><div><b>'+pad(sec)+'</b><span>sec</span></div>';
+  }
+  tick();setInterval(tick,1000);
+
+  // reason cards
+  var reasons=['Your smile lights up my whole day','You make me laugh like nobody else','You feel like home to me','I love how kind your heart is','Every moment with you is my favorite','You’re my person, always','You make ordinary days magical','I’m so lucky it’s you'];
+  var c=document.getElementById('cards');
+  reasons.forEach(function(r,i){
+    var el=document.createElement('div');el.className='card';
+    el.innerHTML='<div class="in"><div class="f">'+['💗','💞','💓','💕','💘','💝','💖','🌹'][i]+'</div><div class="b">'+r+'</div></div>';
+    el.onclick=function(){el.classList.toggle('flip');burst(el.getBoundingClientRect().left+60,el.getBoundingClientRect().top+60,10);};
+    c.appendChild(el);
+  });
+
+  // letter
+  document.getElementById('env').onclick=function(){
+    document.getElementById('letter').classList.toggle('open');
+    document.getElementById('lid').textContent=document.getElementById('letter').classList.contains('open')?'💖':'💌';
+    burst(innerWidth/2,innerHeight/2,30);
+  };
+
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show');});},{threshold:.2});
+  document.querySelectorAll('.reveal').forEach(function(e){io.observe(e);});
+
+  // particles
+  var cv=document.getElementById('fx'),ctx=cv.getContext('2d'),P=[];
+  function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);
+  var emojis=['💖','💗','💕','❤️','✨','🌸'];
+  function burst(x,y,n){
+    for(var i=0;i<n;i++){var a=Math.random()*Math.PI*2,sp=2+Math.random()*5;
+      P.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,g:.12,l:1,s:14+Math.random()*18,e:emojis[Math.floor(Math.random()*emojis.length)]});}
+  }
+  function rain(){P.push({x:Math.random()*cv.width,y:cv.height+20,vx:(Math.random()-.5)*.6,vy:-(1+Math.random()*1.8),g:0,l:1,s:12+Math.random()*16,e:'💗',slow:1});}
+  setInterval(rain,500);
+  function loop(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(var i=P.length-1;i>=0;i--){var p=P[i];
+      p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.l-=p.slow?.0015:.012;
+      if(p.l<=0){P.splice(i,1);continue;}
+      ctx.globalAlpha=Math.min(1,p.l*1.5)*(p.slow?.55:1);ctx.font=p.s+'px serif';ctx.fillText(p.e,p.x,p.y);}
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.getElementById('bigheart').onclick=function(e){burst(e.clientX,e.clientY,40);};
+  document.getElementById('boom').onclick=function(e){
+    for(var k=0;k<6;k++)setTimeout(function(){burst(Math.random()*innerWidth,innerHeight*.5,40);},k*250);
+  };
+  addEventListener('pointerdown',function(e){burst(e.clientX,e.clientY,6);});
+})();
+</script>
+</body>
+</html>
